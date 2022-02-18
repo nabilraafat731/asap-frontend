@@ -1,0 +1,79 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 100px; ">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Cutomers</h1>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+
+  <div class="row mt-5">
+    <div class="col card bg-default shadow" style="    height: 500px;">
+      <div class="card-header bg-transparent border-0">
+        <h3 class="text-white mb-0">add Cutomers</h3>
+      </div>
+      <div class="form-group">
+        <label style="color:white">FullName</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Name"  [(ngModel)]="customerService.formData.fullName" type="text">
+        </div>
+      </div>
+      <label style="color:white">Login Info</label>
+    <div class="form-group">
+      <label style="color:white">Email</label>
+          <div class="input-group input-group-alternative">
+           
+            <input class="form-control" placeholder="email" [(ngModel)]="customerService.formData.email" type="email" >
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label style="color:white">Password</label>
+              <div class="input-group input-group-alternative">   
+                <input class="form-control" placeholder="password" [(ngModel)]="customerService.formData.password" type="password" >
+              </div>
+            </div>
+
+        <div class="text-center">
+          <button type="button" (click)="addCustomer()" class="btn btn-primary my-4">Add</button>
+        </div>
+       
+    </div>
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">customers tables</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">fullName</th>
+                
+               
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of customerService.list">
+                <th scope="row">
+                   <p>{{item.fullName}}</p>
+                </th>
+                
+                <td>
+                   <i class="fa fa-trash" (click)="deleteCustomer(item.id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

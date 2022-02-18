@@ -1,0 +1,153 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 100px; ">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">persons</h1>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+
+  <div class="row mt-5">
+    <div class="col card bg-default shadow" style="    height: 900px;">
+      <div class="card-header bg-transparent border-0">
+        <h3 class="text-white mb-0">add person</h3>
+      </div>
+      <div class="form-group">
+        <label style="color:white">FullName</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Name"  [(ngModel)]="personService.formData.fullName" type="text">
+        </div>
+      </div>
+      <div class="col form-group" *ngIf="showCustomer">
+        <label style="color:white">Customer</label>
+        <div class="input-group input-group-alternative">
+           <select  placeholder="Customer" class="form-control" [(ngModel)]="personService.formData.customerID">
+               <option *ngFor="let opt of customerService.list" [value]="opt.id" >{{opt.fullName}}</option>
+           </select>
+        </div>
+      </div>
+
+      <label style="color:white">Address</label>
+
+     <div class="row">
+       
+      <div class="col form-group">
+        <label style="color:white">Country</label>
+        <div class="input-group input-group-alternative">
+           <select (change)="getCountryCity(personService.formData.countryID)" placeholder="Country" class="form-control" [(ngModel)]="personService.formData.countryID">
+               <option *ngFor="let opt of countryService.list" [value]="opt.id" >{{opt.name}}</option>
+           </select>
+        </div>
+      </div>
+
+      <div class="col form-group">
+        <label style="color:white">City</label>
+        <div class="input-group input-group-alternative">
+           <select placeholder="City" class="form-control" [(ngModel)]="personService.formData.cityID">
+               <option *ngFor="let opt of cityService.list" [value]="opt.id" >{{opt.name}}</option>
+           </select>
+        </div>
+      </div>
+
+     </div>
+       
+     <div class="row">
+       
+      <div class="col form-group">
+        <label style="color:white">PostalCode</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Postal Code"  [(ngModel)]="personService.formData.postalCode" type="text">
+        </div>
+      </div>
+      
+      <div class="col form-group">
+        <label style="color:white">Street Name</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Street Name"  [(ngModel)]="personService.formData.streetName" type="text">
+        </div>
+      </div>
+
+     </div>
+    
+     <div class="row">
+      <div class="col form-group">
+        <label style="color:white">Building Number</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Building Number"  [(ngModel)]="personService.formData.buildingNumber" type="number">
+        </div>
+      </div>
+
+      <div class="col form-group">
+        <label style="color:white">Floor Number</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Floor Number"  [(ngModel)]="personService.formData.floorNumber" type="number">
+        </div>
+      </div>
+
+      <div class="col form-group">
+        <label style="color:white">Appartment Number</label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="Appartment Number"  [(ngModel)]="personService.formData.appartmentNumber" type="number">
+        </div>
+      </div>
+     </div>
+
+      <label style="color:white">Login Info</label>
+    <div class="form-group">
+      <label style="color:white">Email</label>
+          <div class="input-group input-group-alternative">
+           
+            <input class="form-control" placeholder="email" [(ngModel)]="personService.formData.email" type="email" >
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label style="color:white">Password</label>
+              <div class="input-group input-group-alternative">   
+                <input class="form-control" placeholder="password" [(ngModel)]="personService.formData.password" type="password" >
+              </div>
+            </div>
+
+        <div class="text-center">
+          <button type="button" (click)="addPerson()" class="btn btn-primary my-4">Add</button>
+        </div>
+       
+    </div>
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">persons tables</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">fullName</th>
+                
+               
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of personService.list">
+                <th scope="row">
+                   <p>{{item.fullName}}</p>
+                </th>
+                
+                <td>
+                   <i class="fa fa-trash" (click)="deletePerson(item.id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
